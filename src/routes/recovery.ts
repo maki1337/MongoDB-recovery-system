@@ -1,6 +1,7 @@
 import * as express from "express";
 import { exec } from "child_process";
 import path from "path";
+import { getBackendDirPath } from "../Utils/BackupUtils";
 
 const router: express.Router = express.Router();
 module.exports = router;
@@ -8,17 +9,7 @@ module.exports = router;
 // @desc   Saves a snapshot of the database to the folder
 // @route  GET /db/snapshot
 router.get("/db/snapshot", async (req: any, resp: express.Response) => {
-  const date = new Date();
-  const dateString = `${date.getDate()}-${
-    date.getMonth() + 1
-  }-${date.getFullYear()}`;
-  const timeString = `${date.getHours()}-${date.getMinutes()}`;
-  const backupDir = path.join(
-    __dirname,
-    "..",
-    `backups/${dateString}/${timeString}`
-  );
-
+  const backupDir = getBackendDirPath();
   const dumpCommand = `mongodump --uri="mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_SERVER}/${process.env.MONGO_DATABASE}" --out ${backupDir}`;
 
   try {
