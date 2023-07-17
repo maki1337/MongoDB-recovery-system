@@ -35,6 +35,9 @@ router.get("/db/snapshot", async (req: any, resp: express.Response) => {
   }
 });
 
+// @desc   Saves a snapshot of the database to the folder
+// @route  GET /db/restore
+// @param dateString, timeString
 router.post("/db/restore", async (req: any, resp: express.Response) => {
   const dateString = req.body.dateString;
   const timeString = req.body.timeString;

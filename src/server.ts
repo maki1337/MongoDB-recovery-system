@@ -19,6 +19,58 @@ if (!fs.existsSync(directoryPath)) {
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
+if (!process.env.PORT) {
+  console.log("Port not specified!");
+  process.exit(1);
+}
+if (!process.env.MONGO_SERVER) {
+  console.log("Mongodb server not specified!");
+  process.exit(1);
+}
+if (!process.env.MONGO_USER) {
+  console.log("Mongodb user not specified!");
+  process.exit(1);
+}
+if (!process.env.MONGO_PASSWORD) {
+  console.log("Mongodb password not specified!");
+  process.exit(1);
+}
+if (!process.env.SMTP_EMAIL) {
+  console.log("SMTP email not specified!");
+  process.exit(1);
+}
+if (!process.env.SMTP_EMAIL_PASSWORD) {
+  console.log("SMTP email password not specified!");
+  process.exit(1);
+}
+if (!process.env.SMTP_SERVER) {
+  console.log("SMTP server not specified!");
+  process.exit(1);
+}
+if (!process.env.SMTP_PORT) {
+  console.log("SMTP server port not specified!");
+  process.exit(1);
+}
+if (!process.env.MONGO_DATABASE) {
+  console.log("Mongo database not specified!");
+  process.exit(1);
+}
+
+if (!process.env.RECOVERY_JOB) {
+  console.log("Recovery job not specified!");
+  process.exit(1);
+}
+
+if (!process.env.BACKUP_TIMER) {
+  console.log("Backup timer not specified!");
+  process.exit(1);
+}
+
+if (!process.env.BACKUP_TIMER) {
+  console.log("Recovery job mail sender not specified!");
+  process.exit(1);
+}
+
 fs.readdir(
   absPath + "/routes/",
   async (err: NodeJS.ErrnoException | null, files: string[]) => {
