@@ -84,5 +84,5 @@ async function prepareBackup(): Promise<void> {
   }
 }
 
-//cron.schedule(`${process.env.BACKUP_TIMER}`, prepareBackup);
-cron.schedule("* * * * *", prepareBackup);
+cron.schedule(`${process.env.BACKUP_TIMER}`, prepareBackup);
+//cron.schedule("* * * * *", prepareBackup);
