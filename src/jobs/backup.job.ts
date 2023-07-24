@@ -16,7 +16,7 @@ async function prepareBackup(): Promise<void> {
   const dumpCommand = `mongodump --uri="mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_SERVER}/${process.env.MONGO_DATABASE}" --out ${backupDir}`;
 
   if (
-    !isSameDay(new Date(), endOfMonth(new Date())) &&
+    isSameDay(new Date(), endOfMonth(new Date())) &&
     process.env.AUTO_CLEANER?.toLowerCase() !== "false"
   ) {
     // check if today is end of the month
