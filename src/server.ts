@@ -66,8 +66,13 @@ if (!process.env.BACKUP_TIMER) {
   process.exit(1);
 }
 
-if (!process.env.BACKUP_TIMER) {
+if (!process.env.RECOVERY_JOB_MAIL_SENDER) {
   console.log("Recovery job mail sender not specified!");
+  process.exit(1);
+}
+
+if (!process.env.AUTO_CLEANER) {
+  console.log("Auto cleaner not specified!");
   process.exit(1);
 }
 
